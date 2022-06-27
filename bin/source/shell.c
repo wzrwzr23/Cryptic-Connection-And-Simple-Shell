@@ -304,27 +304,28 @@ void main_loop(void)
   } while (status);
 }
 
-// int main(int argc, char **argv)
-// {
+int main(int argc, char **argv)
+{
 
-//   printf("CSEShell Run successful. Running now: \n");
+  printf("CSEShell Run successful. Running now: \n");
 
-//   // Setup path
-//   if (getcwd(output_file_path, sizeof(output_file_path)) != NULL)
-//   {
-//     printf("Current working dir: %s\n", output_file_path);
-//   }
-//   else
-//   {
-//     perror("getcwd() error, exiting now.");
-//     return 1;
-//   }
+  // Setup path
+  if (getcwd(output_file_path, sizeof(output_file_path)) != NULL)
+  {
+    printf("Current working dir: %s\n", output_file_path);
+  }
+  else
+  {
+    perror("getcwd() error, exiting now.");
+    return 1;
+  }
 
-//   // Run command loop
-//   main_loop();
+  // Run command loop
+  main_loop();
 
-//   return 0;
-// }
+  return 0;
+}
+
 //task 1
 // int main(int argc, char **argv)
 // {
@@ -352,7 +353,7 @@ void main_loop(void)
 // }
 
 //task 3
-int main(int argc, char **argv)
+/* int main(int argc, char **argv)
 {
 
   printf("Shell Run successful. Running now: \n");
@@ -377,4 +378,4 @@ int main(int argc, char **argv)
   process_command(args);
 
   return 0;
-}
+} */
