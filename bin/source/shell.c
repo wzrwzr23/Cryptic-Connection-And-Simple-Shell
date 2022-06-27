@@ -165,7 +165,29 @@ int process_command(char **args)
   // DO NOT PRINT ANYTHING TO THE OUTPUT
 
   /***** BEGIN ANSWER HERE *****/
-
+  if(args[0] == NULL){
+    return 1;
+  }
+  for(int i = 0; i<num_builtin_functions(); i++){
+    if(strcmp(args[0], builtin_commands[i])==0){
+      return (*builtin_command_func[i])(args);
+    }
+  }
+  int pid = fork();
+  if(pid < 0){
+    return 1;  //fork fail
+  }
+  if(pid == 0){
+    exec_sys_prog(args);  //child process
+  }
+  if (pid > 0){
+    int status;     //parent process
+    waitpid(pid, &status, WUNTRACED);        
+    // if child terminates properly, WIFEXITED(status) returns TRUE
+    if (WIFEXITED(status)){
+      child_exit_status = WEXITSTATUS(status);
+    }
+  }
   /*********************/
   if (child_exit_status != 1)
   {
@@ -222,11 +244,11 @@ char **tokenize_line_stdin(char *line)
   if (tokens == NULL){
     return NULL;
   }
-  token = strtok(line, " \t\r\n\f\v");
+  token = strtok(line, " \t\r\n\a");
   tokens[0] = token;
   int i = 1;
   while (token != NULL){
-    token = strtok(NULL, " \t\r\n\f\v");
+    token = strtok(NULL, " \t\r\n\a");
     tokens[i] = token;
     i+=1;
   }
@@ -282,27 +304,27 @@ void main_loop(void)
   } while (status);
 }
 
-int main(int argc, char **argv)
-{
+// int main(int argc, char **argv)
+// {
 
-  printf("CSEShell Run successful. Running now: \n");
+//   printf("CSEShell Run successful. Running now: \n");
 
-  // Setup path
-  if (getcwd(output_file_path, sizeof(output_file_path)) != NULL)
-  {
-    printf("Current working dir: %s\n", output_file_path);
-  }
-  else
-  {
-    perror("getcwd() error, exiting now.");
-    return 1;
-  }
+//   // Setup path
+//   if (getcwd(output_file_path, sizeof(output_file_path)) != NULL)
+//   {
+//     printf("Current working dir: %s\n", output_file_path);
+//   }
+//   else
+//   {
+//     perror("getcwd() error, exiting now.");
+//     return 1;
+//   }
 
-  // Run command loop
-  main_loop();
+//   // Run command loop
+//   main_loop();
 
-  return 0;
-}
+//   return 0;
+// }
 //task 1
 // int main(int argc, char **argv)
 // {
@@ -328,3 +350,31 @@ int main(int argc, char **argv)
  
 //  return 0;
 // }
+
+//task 3
+int main(int argc, char **argv)
+{
+
+  printf("Shell Run successful. Running now: \n");
+
+  char *line = read_line_stdin();
+  printf("The fetched line is : %s \n", line);
+
+  char **args = tokenize_line_stdin(line);
+  printf("The first token is %s \n", args[0]);
+  printf("The second token is %s \n", args[1]);
+
+  // Setup path
+  if (getcwd(output_file_path, sizeof(output_file_path)) != NULL)
+  {
+    printf("Current working dir: %s\n", output_file_path);
+  }
+  else
+  {
+    perror("getcwd() error, exiting now.");
+    return 1;
+  }
+  process_command(args);
+
+  return 0;
+}
