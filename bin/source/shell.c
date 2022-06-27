@@ -298,12 +298,18 @@ void main_loop(void)
     fflush(stdout); // clear the buffer and move the output to the console using fflush
 
     /***** BEGIN ANSWER HERE *****/
-    status = shell_exit(args); // remove this line when you work on this task
+    //status = shell_exit(args); // remove this line when you work on this task
+    line = read_line_stdin();
+    args = tokenize_line_stdin(line);
+    status = process_command(args);
 
+    free(line);
+    free(args);
     /*********************/
   } while (status);
 }
 
+//task 4 (original)
 int main(int argc, char **argv)
 {
 
