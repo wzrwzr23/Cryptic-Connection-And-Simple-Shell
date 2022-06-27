@@ -190,6 +190,12 @@ char *read_line_stdin(void)
 
   /***** BEGIN ANSWER HERE *****/
 
+  ssize_t lineSize = 0;
+  if (line == NULL){
+    return NULL;
+  }
+  lineSize = getline(&line, &buf_size, stdin);
+  
   /*********************/
 
   return line;
