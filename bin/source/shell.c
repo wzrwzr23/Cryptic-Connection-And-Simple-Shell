@@ -253,6 +253,7 @@ char **tokenize_line_stdin(char *line)
     i+=1;
   }
   tokens[i] = '\0';
+  current_number_tokens = i-1;
   /*********************/
 
   return tokens;
