@@ -219,7 +219,18 @@ char **tokenize_line_stdin(char *line)
   // 3. Store the address to first letter of each word in the command in tokens
   // 4. Add NULL termination in tokens so we know how many "valid" addresses there are in tokens
   /***** BEGIN ANSWER HERE *****/
-
+  if (tokens == NULL){
+    return NULL;
+  }
+  token = strtok(line, " \t\r\n\f\v");
+  tokens[0] = token;
+  int i = 1;
+  while (token != NULL){
+    token = strtok(NULL, " \t\r\n\f\v");
+    tokens[i] = token;
+    i+=1;
+  }
+  tokens[i] = '\0';
   /*********************/
 
   return tokens;
@@ -292,11 +303,25 @@ void main_loop(void)
 
 //   return 0;
 // }
+// int main(int argc, char **argv)
+// {
+ 
+//  char* line = read_line_stdin();
+//  printf("The fetched line is : %s \n", line);
+ 
+//  return 0;
+// }
 int main(int argc, char **argv)
 {
  
+ printf("Shell Run successful. Running now: \n");
+ 
  char* line = read_line_stdin();
  printf("The fetched line is : %s \n", line);
+ 
+ char** args = tokenize_line_stdin(line);
+ printf("The first token is %s \n", args[0]);
+ printf("The second token is %s \n", args[1]);
  
  return 0;
 }
