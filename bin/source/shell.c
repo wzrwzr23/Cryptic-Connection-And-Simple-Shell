@@ -190,11 +190,11 @@ char *read_line_stdin(void)
 
   /***** BEGIN ANSWER HERE *****/
 
-  ssize_t lineSize = 0;
+  //ssize_t lineSize = 0;
   if (line == NULL){
     return NULL;
   }
-  lineSize = getline(&line, &buf_size, stdin);
+  getline(&line, &buf_size, stdin);
   
   /*********************/
 
@@ -271,24 +271,32 @@ void main_loop(void)
   } while (status);
 }
 
+// int main(int argc, char **argv)
+// {
+
+//   printf("CSEShell Run successful. Running now: \n");
+
+//   // Setup path
+//   if (getcwd(output_file_path, sizeof(output_file_path)) != NULL)
+//   {
+//     printf("Current working dir: %s\n", output_file_path);
+//   }
+//   else
+//   {
+//     perror("getcwd() error, exiting now.");
+//     return 1;
+//   }
+
+//   // Run command loop
+//   main_loop();
+
+//   return 0;
+// }
 int main(int argc, char **argv)
 {
-
-  printf("CSEShell Run successful. Running now: \n");
-
-  // Setup path
-  if (getcwd(output_file_path, sizeof(output_file_path)) != NULL)
-  {
-    printf("Current working dir: %s\n", output_file_path);
-  }
-  else
-  {
-    perror("getcwd() error, exiting now.");
-    return 1;
-  }
-
-  // Run command loop
-  main_loop();
-
-  return 0;
+ 
+ char* line = read_line_stdin();
+ printf("The fetched line is : %s \n", line);
+ 
+ return 0;
 }
