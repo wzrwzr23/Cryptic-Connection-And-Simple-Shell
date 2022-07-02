@@ -28,7 +28,7 @@ int execute()
    // DO NOT PRINT ANYTHING TO THE OUTPUT
 
    /***** BEGIN ANSWER HERE *****/
-    fptr = fopen("output.txt", "r");
+    fptr = fopen("output.txt", "r+");
     size_t line_buf_size=0;
     int daemoncount=0;
     size_t line_size;
