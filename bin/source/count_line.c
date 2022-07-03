@@ -26,7 +26,19 @@ int execute(char **args)
     // DO NOT PRINT ANYTHING TO THE OUTPUT
 
     /***** BEGIN ANSWER HERE *****/
-
+    char *buffer;
+    size_t bufsize=32;
+    size_t characters;
+    buffer=(char *)malloc(bufsize*sizeof(char));
+    int ch=0;
+    int line=getline(&buffer,&bufsize,fp);
+    int count=0;
+    while (line!=-1)
+    {
+     count++;
+     line=getline(&buffer,&bufsize,fp);
+    }
+    number_of_lines=count;
     /*********************/
     fclose(fp); // close file.
     printf("%d \t %s \n", number_of_lines, args[1]);

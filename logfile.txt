@@ -1,0 +1,76 @@
+13557 with FD 3
+PID 13557 Daemon writing line 0 to the file.  
+PID 13557 Daemon writing line 1 to the file.  
+PID 13557 Daemon writing line 2 to the file.  
+PID 13557 Daemon writing line 3 to the file.  
+14528 with FD 3
+PID 14528 Daemon writing line 0 to the file.  
+PID 14528 Daemon writing line 1 to the file.  
+PID 14528 Daemon writing line 2 to the file.  
+PID 14528 Daemon writing line 3 to the file.  
+PID 14528 Daemon writing line 4 to the file.  
+PID 14528 Daemon writing line 5 to the file.  
+PID 14528 Daemon writing line 6 to the file.  
+PID 14528 Daemon writing line 7 to the file.  
+PID 14528 Daemon writing line 8 to the file.  
+PID 14528 Daemon writing line 9 to the file.  
+17757 with FD 3
+PID 17757 Daemon writing line 0 to the file.  
+PID 17757 Daemon writing line 1 to the file.  
+PID 17757 Daemon writing line 2 to the file.  
+PID 17757 Daemon writing line 3 to the file.  
+PID 17757 Daemon writing line 4 to the file.  
+PID 17757 Daemon writing line 5 to the file.  
+PID 17757 Daemon writing line 6 to the file.  
+PID 17757 Daemon writing line 7 to the file.  
+PID 17757 Daemon writing line 8 to the file.  
+PID 17757 Daemon writing line 9 to the file.  
+19004 with FD 3
+PID 19004 Daemon writing line 0 to the file.  
+PID 19004 Daemon writing line 1 to the file.  
+PID 19004 Daemon writing line 2 to the file.  
+PID 19004 Daemon writing line 3 to the file.  
+PID 19004 Daemon writing line 4 to the file.  
+PID 19004 Daemon writing line 5 to the file.  
+PID 19004 Daemon writing line 6 to the file.  
+PID 19004 Daemon writing line 7 to the file.  
+PID 19004 Daemon writing line 8 to the file.  
+PID 19004 Daemon writing line 9 to the file.  
+19624 with FD 3
+PID 19624 Daemon writing line 0 to the file.  
+19865 with FD 3
+PID 19865 Daemon writing line 0 to the file.  
+PID 19865 Daemon writing line 1 to the file.  
+PID 19865 Daemon writing line 2 to the file.  
+PID 19865 Daemon writing line 3 to the file.  
+20133 with FD 3
+PID 20133 Daemon writing line 0 to the file.  
+PID 20133 Daemon writing line 1 to the file.  
+PID 20133 Daemon writing line 2 to the file.  
+PID 20133 Daemon writing line 3 to the file.  
+PID 20133 Daemon writing line 4 to the file.  
+PID 20133 Daemon writing line 5 to the file.  
+PID 20133 Daemon writing line 6 to the file.  
+PID 20133 Daemon writing line 7 to the file.  
+PID 20133 Daemon writing line 8 to the file.  
+PID 20133 Daemon writing line 9 to the file.  
+20746 with FD 3
+PID 20746 Daemon writing line 0 to the file.  
+20748 with FD 3
+PID 20748 Daemon writing line 0 to the file.  
+PID 20746 Daemon writing line 1 to the file.  
+PID 20748 Daemon writing line 1 to the file.  
+PID 20746 Daemon writing line 2 to the file.  
+PID 20748 Daemon writing line 2 to the file.  
+PID 20746 Daemon writing line 3 to the file.  
+PID 20748 Daemon writing line 3 to the file.  
+PID 20746 Daemon writing line 4 to the file.  
+PID 20748 Daemon writing line 4 to the file.  
+PID 20746 Daemon writing line 5 to the file.  
+PID 20748 Daemon writing line 5 to the file.  
+PID 20746 Daemon writing line 6 to the file.  
+PID 20748 Daemon writing line 6 to the file.  
+PID 20746 Daemon writing line 7 to the file.  
+PID 20748 Daemon writing line 7 to the file.  
+PID 20746 Daemon writing line 8 to the file.  
+PID 20748 Daemon writing line 8 to the file.  
