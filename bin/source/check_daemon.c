@@ -28,16 +28,24 @@ int execute()
    // DO NOT PRINT ANYTHING TO THE OUTPUT
 
    /***** BEGIN ANSWER HERE *****/
-   fptr = fopen("output.txt", "r+");
-    size_t line_buf_size=0;
-    int daemoncount=0;
-    size_t line_size;
-    char *line_buf=NULL;
-    line_size=getline(&line_buf,&line_buf_size,fptr);
-    while(line_size>=0)
-    {daemoncount++;
-    line_size=getline(&line_buf,&line_buf_size,fptr);}
-    live_daemons=daemoncount;
+   fptr = fopen("output.txt", "r");
+
+   size_t line_buf_size = SHELL_BUFFERSIZE;
+   char *buffer = malloc(line_buf_size * sizeof(char));
+   int count = 0;
+   if (fptr != NULL)
+   {
+      int line_size;
+
+      line_size = getline(&buffer, &line_buf_size, fptr);
+
+      while (line_size != -1)
+      {
+         count++;
+         line_size = getline(&buffer, &line_buf_size, fptr);
+      }
+   }
+   live_daemons = count;
    /*********************/
    if (live_daemons == 0)
       printf("No daemon is alive right now.\n");
