@@ -74,3 +74,11 @@ PID 20746 Daemon writing line 7 to the file.
 PID 20748 Daemon writing line 7 to the file.  
 PID 20746 Daemon writing line 8 to the file.  
 PID 20748 Daemon writing line 8 to the file.  
+9001 with FD 3
+PID 9001 Daemon writing line 0 to the file.  
+9028 with FD 3
+PID 9028 Daemon writing line 0 to the file.  
+PID 9001 Daemon writing line 1 to the file.  
+PID 9028 Daemon writing line 1 to the file.  
+PID 9001 Daemon writing line 2 to the file.  
+PID 9028 Daemon writing line 2 to the file.  
