@@ -50,7 +50,7 @@ def main(args):
     address = args[1] if len(args) > 1 else "localhost"
     try:
         with open("auth/server_private_key.pem", mode="r", encoding="utf8") as key_file:
-        private_key = serialization.load_pem_private_key(
+            private_key = serialization.load_pem_private_key(
         bytes(key_file.read(), encoding="utf8"), password=None
         )
         public_key = private_key.public_key()
