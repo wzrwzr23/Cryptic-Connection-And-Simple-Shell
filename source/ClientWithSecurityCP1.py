@@ -1,3 +1,5 @@
+from cProfile import label
+from email import message
 import pathlib
 import socket
 import sys
@@ -55,6 +57,7 @@ def main(args):
         ca_cert = x509.load_pem_x509_certificate(
             data=ca_cert_raw, backend=default_backend()
         )
+
         ca_public_key = ca_cert.public_key()
         server_cert = x509.load_pem_x509_certificate(
             data=server_cert_raw, backend=default_backend()
@@ -96,12 +99,22 @@ def main(args):
             #M2
             s.sendall(filename_bytes)
 
+
             # Send the file
             with open(filename, mode="rb") as fp:
                 data = fp.read()
                 s.sendall(convert_int_to_bytes(1))
-                s.sendall(convert_int_to_bytes(len(data)))
-                s.sendall(data)
+                for encode in data:
+                    encrypted_message = server_public_key.encrypt(
+                        convert_int_to_bytes(encode),
+                        padding.OAEP(
+                            mgf=padding.MGF1(hashes.SHA256(),
+                            algorithm=hashes.SHA256(),
+                            label=None,)
+                        ),
+                    )
+                    s.sendall(convert_int_to_bytes(len(encrypted_message)))
+                    s.sendall(encrypted_message)
 
         # Close the connection
         s.sendall(convert_int_to_bytes(2))

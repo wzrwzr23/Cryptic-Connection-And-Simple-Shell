@@ -85,8 +85,23 @@ def main(args):
                             file_len = convert_bytes_to_int(
                                 read_bytes(client_socket, 8)
                             )
+
                             file_data = read_bytes(client_socket, file_len)
                             # print(file_data)
+
+                            read_data = []
+
+                            for encrypted in file_data:
+                                read_data.append(
+                                    private_key.decrypt(
+                                        encrypted,
+                                    padding.OAEP(
+                                        mgf=padding.MGF1(hashes.SHA256()),
+                                        algorithm=hashes.SHA256(),
+                                        label=None,
+                                    )))
+
+                            decrypted_message = read_data
 
                             filename = "recv_" + filename.split("/")[-1]
 
@@ -94,13 +109,13 @@ def main(args):
                             with open(
                                 f"recv_files/{filename}", mode="wb"
                             ) as fp:
-                                fp.write(file_data)
+                                fp.write(decrypted_message)
                             print(
                                 f"Finished receiving file in {(time.time() - start_time)}s!"
                             )
                         case 2:
                             # Close the connection
-                            # Python context used here so no need to explicitly close the socket
+                            # Python context used here so no need1 to explicitly close the socket
                             print("Closing connection...")
                             s.close()
                             break
