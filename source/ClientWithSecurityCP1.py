@@ -129,20 +129,29 @@ def main(args):
             s.sendall(filename_bytes)
 
             # Send the file
+            filename2 = "enc_" + filename.split("/")[-1]
             with open(filename, mode="rb") as fp:
                 data = fp.read()
                 s.sendall(convert_int_to_bytes(1))
-                for encode in data:
-                    encrypted_message = server_public_key.encrypt(
-                        convert_int_to_bytes(encode),
-                        padding.OAEP(
-                            mgf=padding.MGF1(hashes.SHA256(),
-                            algorithm=hashes.SHA256(),
-                            label=None,)
-                        ),
-                    )
-                    s.sendall(convert_int_to_bytes(len(encrypted_message)))
-                    s.sendall(encrypted_message)
+                
+                #for encode in data:
+                encrypted_message = server_public_key.encrypt(
+                    #encode,
+                    data,
+                    padding.OAEP(
+                        mgf=padding.MGF1(hashes.SHA256()),
+                        algorithm=hashes.SHA256(),
+                        label=None,
+                    ),
+                )
+                with open(
+                    f"send_files_enc/{filename2}", mode="wb"
+                ) as fp:
+                    fp.write(encrypted_message)
+                    
+                s.sendall(convert_int_to_bytes(len(encrypted_message)))
+                s.sendall(encrypted_message)            
+            
 
         # Close the connection
         s.sendall(convert_int_to_bytes(2))

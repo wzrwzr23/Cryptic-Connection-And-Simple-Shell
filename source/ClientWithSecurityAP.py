@@ -132,8 +132,14 @@ def main(args):
             with open(filename, mode="rb") as fp:
                 data = fp.read()
                 s.sendall(convert_int_to_bytes(1))
+                filename2 = "enc_" + filename.split("/")[-1]
+                with open(
+                    f"send_files_enc/{filename2}", mode="wb"
+                ) as fp:
+                    fp.write(data)
                 s.sendall(convert_int_to_bytes(len(data)))
                 s.sendall(data)
+
 
         # Close the connection
         s.sendall(convert_int_to_bytes(2))

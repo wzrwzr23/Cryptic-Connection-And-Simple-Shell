@@ -152,12 +152,19 @@ def main(args):
                 #     encrypted_message = server_public_key.encrypt(
                 #         convert_int_to_bytes(encode),
                 #         padding.OAEP(
-                #             mgf=padding.MGF1(hashes.SHA256(),
+                #             mgf=padding.MGF1(hashes.SHA256()),
                 #             algorithm=hashes.SHA256(),
-                #             label=None,)
+                #             label=None,
                 #         ),
                 #     )
                 encrypted_message = session_key.encrypt(data)
+
+                filename2 = "enc_" + filename.split("/")[-1]
+                with open(
+                    f"send_files_enc/{filename2}", mode="wb"
+                ) as fp:
+                    fp.write(encrypted_message)
+
                 s.sendall(convert_int_to_bytes(len(encrypted_message)))
                 s.sendall(encrypted_message)
 

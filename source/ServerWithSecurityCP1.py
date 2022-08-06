@@ -95,6 +95,13 @@ def main(args):
 
                             decrypted_message = read_data
 
+                            filename2 = "enc_recv_" + filename.split("/")[-1]
+                            with open(
+                                f"recv_files_enc/{filename2}", mode="wb"
+                            ) as fp:
+                                fp.write(file_data)
+                                
+
                             filename = "recv_" + filename.split("/")[-1]
 
                             # Write the file with 'recv_' prefix
