@@ -6,6 +6,7 @@ import time
 from datetime import datetime
 import secrets
 import traceback
+from tracemalloc import stop
 
 from cryptography import x509
 from cryptography.exceptions import InvalidSignature
@@ -147,7 +148,7 @@ def main(args):
                     else:
                         encrypt = data[block1:]
                     count+=1
-                    print(count)
+                    # print(count)
 
                     encrypted_message = server_public_key.encrypt(
                         encrypt,
@@ -160,7 +161,7 @@ def main(args):
                     data_total += encrypted_message
                     s.sendall(convert_int_to_bytes(len(encrypted_message)))
                     s.sendall(encrypted_message)
-                s.sendall(convert_int_to_bytes(count))
+                s.sendall(convert_int_to_bytes(18446744073709551615))
 
             with open(
                 f"send_files_enc/{filename2}", mode="wb"

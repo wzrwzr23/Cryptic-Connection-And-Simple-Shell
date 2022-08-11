@@ -78,7 +78,7 @@ def main(args):
                             count = 0
                             while True:
                                 client= convert_bytes_to_int(read_bytes(client_socket, 8)) 
-                                if client == count:
+                                if client == 18446744073709551615:
                                     break
                                 else:
                                     file_data = read_bytes(client_socket, client)
@@ -92,9 +92,9 @@ def main(args):
                                         label=None,),
                                     )
                                 decrypted += decrypted_message
-                                
-                                print(count)
-                                print(client)
+
+                                # print(count)
+                                # print(client)
 
                                 
                                 count+=1
