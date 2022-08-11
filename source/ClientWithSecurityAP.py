@@ -75,7 +75,6 @@ def main(args):
             ca_public_key = ca_cert.public_key()
 
 
-
             server_cert_len = convert_bytes_to_int(read_bytes(s, 8))
             server_cert_raw = read_bytes(s, server_cert_len)
 

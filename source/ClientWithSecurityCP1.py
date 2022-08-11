@@ -140,6 +140,7 @@ def main(args):
                 count = 0
                 data_total = bytes(0)
                 while data_block*count < data_length:
+                    
                     block1 = data_block*count
                     block2 = data_block*(count+1)
 

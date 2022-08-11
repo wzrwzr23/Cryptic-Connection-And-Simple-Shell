@@ -92,7 +92,6 @@ def main(args):
                             #                 label=None,)
                             #             )
                             #         )
-
                             decrypted_message = session_key.decrypt(file_data)
 
                             filename2 = "enc_recv_" + filename.split("/")[-1]

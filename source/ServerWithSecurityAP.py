@@ -80,7 +80,6 @@ def main(args):
                             # print(file_data)
 
 
-
                             filename2 = "enc_recv_" + filename.split("/")[-1]
                             with open(
                                 f"recv_files_enc/{filename2}", mode="wb"

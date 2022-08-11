@@ -148,6 +148,7 @@ def main(args):
             with open(filename, mode="rb") as fp:
                 data = fp.read()
                 s.sendall(convert_int_to_bytes(1))
+                
                 # for encode in data:
                 #     encrypted_message = server_public_key.encrypt(
                 #         convert_int_to_bytes(encode),
