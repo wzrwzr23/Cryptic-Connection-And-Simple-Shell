@@ -1,3 +1,4 @@
+
 import pathlib
 import socket
 import sys
@@ -133,25 +134,38 @@ def main(args):
             with open(filename, mode="rb") as fp:
                 data = fp.read()
                 s.sendall(convert_int_to_bytes(1))
-                
-                #for encode in data:
-                encrypted_message = server_public_key.encrypt(
-                    #encode,
-                    data,
-                    padding.OAEP(
-                        mgf=padding.MGF1(hashes.SHA256()),
-                        algorithm=hashes.SHA256(),
-                        label=None,
-                    ),
-                )
-                with open(
-                    f"send_files_enc/{filename2}", mode="wb"
-                ) as fp:
-                    fp.write(encrypted_message)
-                    
-                s.sendall(convert_int_to_bytes(len(encrypted_message)))
-                s.sendall(encrypted_message)            
-            
+                data_block = 62
+                data_length = len(data)
+                count = 0
+                data_total = bytes(0)
+                while data_block*count < data_length:
+                    block1 = data_block*count
+                    block2 = data_block*(count+1)
+
+                    if data_block*(count+1) < data_length:
+                        encrypt = data[block1:block2]
+                    else:
+                        encrypt = data[block1:]
+                    count+=1
+                    print(count)
+
+                    encrypted_message = server_public_key.encrypt(
+                        encrypt,
+                        padding.OAEP(
+                            mgf=padding.MGF1(hashes.SHA256()),
+                            algorithm=hashes.SHA256(),
+                            label=None,
+                        ),
+                    )
+                    data_total += encrypted_message
+                    s.sendall(convert_int_to_bytes(len(encrypted_message)))
+                    s.sendall(encrypted_message)
+                s.sendall(convert_int_to_bytes(count))
+
+            with open(
+                f"send_files_enc/{filename2}", mode="wb"
+            ) as fp:
+                fp.write(data_total)
 
         # Close the connection
         s.sendall(convert_int_to_bytes(2))

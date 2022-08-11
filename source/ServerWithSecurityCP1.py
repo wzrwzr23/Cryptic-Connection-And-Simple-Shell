@@ -1,3 +1,4 @@
+
 import pathlib
 import socket
 import sys
@@ -72,43 +73,45 @@ def main(args):
                         case 1:
                             # If the packet is for transferring a chunk of the file
                             start_time = time.time()
-
-                            file_len = convert_bytes_to_int(
-                                read_bytes(client_socket, 8)
-                            )
-
-                            file_data = read_bytes(client_socket, file_len)
-                            # print(file_data)
-
-                            read_data = []
-
-                            for encrypted in file_data:
-                                read_data.append(
-                                    private_key.decrypt(
-                                        encrypted,
-                                        padding.OAEP(
-                                            mgf=padding.MGF1(hashes.SHA256()),
-                                            algorithm=hashes.SHA256(),
-                                            label=None,)
-                                        )
+                            data_total = bytes(0)
+                            decrypted = bytes(0)
+                            count = 0
+                            while True:
+                                client= convert_bytes_to_int(read_bytes(client_socket, 8)) 
+                                if client == count:
+                                    break
+                                else:
+                                    file_data = read_bytes(client_socket, client)
+                                    
+                                data_total += file_data
+                                decrypted_message = private_key.decrypt(
+                                    file_data,
+                                    padding.OAEP(
+                                        mgf=padding.MGF1(hashes.SHA256()),
+                                        algorithm=hashes.SHA256(),
+                                        label=None,),
                                     )
+                                decrypted += decrypted_message
+                                
+                                print(count)
+                                print(client)
 
-                            decrypted_message = read_data
+                                
+                                count+=1
 
                             filename2 = "enc_recv_" + filename.split("/")[-1]
                             with open(
                                 f"recv_files_enc/{filename2}", mode="wb"
                             ) as fp:
-                                fp.write(file_data)
+                                fp.write(data_total)
                                 
-
                             filename = "recv_" + filename.split("/")[-1]
 
                             # Write the file with 'recv_' prefix
                             with open(
                                 f"recv_files/{filename}", mode="wb"
                             ) as fp:
-                                fp.write(decrypted_message)
+                                fp.write(decrypted)
                             print(
                                 f"Finished receiving file in {(time.time() - start_time)}s!"
                             )
